@@ -1,7 +1,8 @@
 from crawlee.crawlers import PlaywrightCrawlingContext
 from crawlee.router import Router
+from src.handlers.discovery import discovery_handler
 
-# Я создаю роутер для распределения логики обработки страниц по разным обработчикам.
+# Я подключаю discovery_handler к роутеру для обработки начальной страницы.
 
 router = Router[PlaywrightCrawlingContext]()
 
@@ -9,7 +10,7 @@ router = Router[PlaywrightCrawlingContext]()
 @router.default_handler
 async def default_handler(context: PlaywrightCrawlingContext) -> None:
     """Обработчик по умолчанию для всех страниц."""
-    context.log.info(f"Processing {context.request.url}")
+    await discovery_handler(context)
 
 
 @router.handler("CHAT_DETAIL")
