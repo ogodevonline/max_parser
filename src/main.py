@@ -8,11 +8,13 @@ async def main() -> None:
     """Инициализация и запуск PlaywrightCrawler."""
     crawler = PlaywrightCrawler(
         request_handler=router,
-        headless=settings.HEADLESS,
+        headless=True, # Включаем headless=False для отладки, чтобы видеть что происходит
         browser_type="chromium",
-        # Crawlee использует PlaywrightBrowserContextOptions для настройки
+        user_data_dir=settings.USER_DATA_DIR,
+        max_requests_per_crawl=50,
     )
 
+    # Запускаем с базового URL
     await crawler.run([settings.BASE_URL])
 
 

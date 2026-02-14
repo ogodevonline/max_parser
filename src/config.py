@@ -4,9 +4,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """Конфигурация приложения с использованием pydantic-settings."""
 
-    BASE_URL: str = "https://maxchat.example.com"
+    BASE_URL: str = "https://web.max.ru/"
     USER_DATA_DIR: str = "./storage/user_data"
-    HEADLESS: bool = True
+    HEADLESS: bool = False
     DEFAULT_LANGUAGE: str = "ru-RU"
     VIEWPORT_WIDTH: int = 1920
     VIEWPORT_HEIGHT: int = 1080
